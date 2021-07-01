@@ -469,7 +469,44 @@ if __name__=="__main__":
     scenegraph3d = {}
     scenegraph3d[model] = {}
     scenegraph3d[model]['graph'], scenegraph3d[model]['panoramas'] = load_3DSceneGraph(model, data_path)
+
+# @Shubodh: CUSTOM CODE START: This will print out information we need for GraphVPR
+    i=0; j =0; k =0
+    par_str = "parent_room"; id_str = "id"; class_str = "class_"
+    parent_object = {}
+    parent_object_desc = {}
+    for k1, v1 in scenegraph3d[model].items():
+        if i ==0:
+            buildingObj = v1
+
+            print("\n ROOMS: \n")
+            for k3, v3 in buildingObj.room.items():
+                print(k3, v3.get_attribute("id"), v3.get_attribute("scene_category"))
+                k += 1
+            print(f"number of rooms: {k} \n")
+
+            print("\n OBJECTS: \n")
+            for k2, v2 in buildingObj.object.items():
+                #print(f"key {k2}, parent_room {v2.get_attribute(par_str)}, \
+                #id {v2.get_attribute(id_str)}, class_ {v2.get_attribute(class_str)}")
+                parent_object.setdefault(v2.get_attribute(par_str), [])
+                parent_object[v2.get_attribute(par_str)].append(v2.get_attribute(id_str))
+
+                parent_object_desc.setdefault(v2.get_attribute(par_str), [])
+                parent_object_desc[v2.get_attribute(par_str)].append(v2.get_attribute(class_str))
+
+
+                j += 1
+            print(f"\n parent_object_desc: {parent_object_desc} \n")
+            print(f"\n parent_object: {parent_object} \n")
+            print(f"number of objects: {j} \n")
+
+        i +=1
+        #for k2, v2 in k1.items():
+        #    print(f"\n k2: {k2}")
+# @Shubodh: CUSTOM CODE START
     
+
     if opt.visualize:
         if not os.path.exists(export_viz_path):
             os.makedirs(export_viz_path)

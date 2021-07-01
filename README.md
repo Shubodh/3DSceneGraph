@@ -2,6 +2,11 @@
 
 <img align="left" height="500" src="https://3dscenegraph.stanford.edu/images/3dscenegraph.png">
 
+## Shubodh-documentation
+The custom code added in ```tools/load.py``` prints out all the information we need for our graphVPR tasks, i.e. list of objects in every room. (First set up this repo, see below instructions, you need to set paths in `load.sh` etc...) All you need to do  is set the environment name in ```tools/load.sh``` script.
+
+Also, you might face an issue with pickle=False, just downgrading your numpy version to 1.15.4 (or maybe even 1.16) should fix the problem.
+
 ## Overview
 The 3D Scene Graph provides semantic data for models in the [Gibson environment](http://gibsonenv.stanford.edu/) [1] that corresponds to the structure proposed in [3D Scene Graph: A Structure for Unified Semantics, 3D Space, and Camera](http://3dscenegraph.stanford.edu). The semantic information for models in the tiny Gibson split is verified via crowdsourcing and contains all 3D Scene Graph attributes. For these models we provide both the automated and verified outputs. For the rest of them, semantic information is the output of automated modules and does not include modalities that depend solely on manual input (e.g., object materials and textures). You can learn more about 3D Scene Graph and interact with the semantic data here: [http://3dscenegraph.stanford.edu](http://3dscenegraph.stanford.edu)
 
